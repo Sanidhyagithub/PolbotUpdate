@@ -28,8 +28,9 @@ from zoneinfo import ZoneInfo
 # ─────────────────────────────────────────────────────
 #  CONFIG
 # ─────────────────────────────────────────────────────
-BOT_TOKEN              = "YOUR_BOT_TOKEN_HERE"
-CHANNEL_ID             = 123456789012345678
+import os
+BOT_TOKEN              = os.environ.get("BOT_TOKEN", "")
+CHANNEL_ID             = int(os.environ.get("CHANNEL_ID", 0))
 
 POLL_INTERVAL_SECONDS  = 60        # Poll every 1 minute
 MAX_RETRIES            = 3         # Retries per failed check
