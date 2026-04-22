@@ -17,6 +17,12 @@ SETUP:
 4. python polymarket_bot.py
 """
 
+import os
+try:
+    from dotenv import load_dotenv
+    load_dotenv()  # loads .env file locally; ignored on Railway
+except ImportError:
+    pass  # dotenv not needed on Railway
 import discord
 import aiohttp
 import asyncio
@@ -24,14 +30,13 @@ import logging
 import traceback
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
-
+ 
 # ─────────────────────────────────────────────────────
-#  CONFIG
+#  CONFIG — set these in Railway Variables tab
 # ─────────────────────────────────────────────────────
-import os
 BOT_TOKEN              = os.environ.get("BOT_TOKEN", "")
 CHANNEL_ID             = int(os.environ.get("CHANNEL_ID", 0))
-
+ 
 POLL_INTERVAL_SECONDS  = 60        # Poll every 1 minute
 MAX_RETRIES            = 3         # Retries per failed check
 RETRY_BACKOFF_SECONDS  = 10        # Wait between retries
